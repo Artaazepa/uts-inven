@@ -29,7 +29,7 @@ class StoreCommodityRequest extends FormRequest
             'item_code' => 'required|unique:commodities,item_code|min:3|max:255',
             'name' => 'required|string|min:3|max:255',
             'brand' => 'required|string|min:3|max:255',
-            'material' => 'required|string|min:3|max:255',
+            
             'year_of_purchase' => 'required|numeric|digits:4',
             'condition' => 'required|in:1,2,3',
             'quantity' => 'required|numeric|digits_between:1,10',
@@ -70,10 +70,7 @@ class StoreCommodityRequest extends FormRequest
             'brand.min' => 'Kolom merek minimal :min karakter!',
             'brand.max' => 'Kolom merek maksimal :max karakter!',
 
-            'material.required' => 'Kolom bahan wajib diisi!',
-            'material.string' => 'Kolom bahan harus berupa karakter!',
-            'material.min' => 'Kolom bahan minimal :min karakter!',
-            'material.max' => 'Kolom bahan maksimal :max karakter!',
+            
 
             'year_of_purchase.required' => 'Kolom tahun pembelian wajib diisi!',
             'year_of_purchase.numeric' => 'Kolom tahun pembelian harus berupa angka!',

@@ -35,13 +35,7 @@ class CommodityRepository
     /**
      * Count the number of commodities grouped by material.
      */
-    public function countCommodityByMaterial()
-    {
-        return $this->model->selectRaw('COUNT(`material`) AS count, material')
-            ->groupBy('material')
-            ->orderBy('material')
-            ->get();
-    }
+    
 
     /**
      * Count the number of commodities grouped by brand.

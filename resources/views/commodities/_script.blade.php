@@ -18,7 +18,6 @@
 					$("#show_commodity #commodity_location_id").val(
 						res.data.commodity_location.name
 					);
-					$("#show_commodity #material").val(res.data.material);
 					$("#show_commodity #brand").val(res.data.brand);
 					$("#show_commodity #year_of_purchase").val(res.data.year_of_purchase);
 					$("#show_commodity #condition").val(res.data.condition_name);
@@ -31,7 +30,7 @@
 					$("#show_commodity #price_per_item").val(res.data.price_per_item_formatted);
 				},
 				error: (err) => {
-					alert("error occured, check console");
+					alert("error occurred, check console");
 					console.log(err);
 				},
 			});
@@ -61,7 +60,6 @@
 					$("#edit_commodity form #commodity_location_id").val(
 						res.data.commodity_location.id
 					);
-					$("#edit_commodity form #material").val(res.data.material);
 					$("#edit_commodity form #brand").val(res.data.brand);
 					$("#edit_commodity form #year_of_purchase").val(
 						res.data.year_of_purchase
@@ -79,7 +77,7 @@
 					$("#edit_commodity form").attr("action", updateURL);
 				},
 				error: (err) => {
-					alert("error occured, check console");
+					alert("error occurred, check console");
 					console.log(err);
 				},
 			});

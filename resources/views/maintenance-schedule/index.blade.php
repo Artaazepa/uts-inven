@@ -61,12 +61,11 @@
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <!-- Edit Schedule Button -->
                                         @can('ubah jadwal')
-                                        <a href="javascript:void(0);" data-id="{{ $schedule->id }}"
-                                            class="btn btn-sm btn-success text-white edit-modal mr-2"
-                                            data-toggle="modal" data-target="#maintenance_schedule_edit_modal"
-                                            title="Ubah data">
-                                            <i class="fas fa-fw fa-edit"></i>
-                                        </a>
+                                        <a data-id="{{ $schedule->id }}" class="btn btn-sm btn-success text-white edit-modal mr-2"
+											data-toggle="modal" data-target="#maintenance_schedule_edit_modal" data-placement="top"
+											title="Ubah data">
+											<i class="fas fa-fw fa-edit"></i>
+										</a>
                                         @endcan
                                         <!-- Delete Schedule Button -->
                                         @can('hapus jadwal')

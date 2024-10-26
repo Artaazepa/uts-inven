@@ -43,9 +43,6 @@ class CommodityController extends Controller
             return $q->where('year_of_purchase', request('year_of_purchase'));
         });
 
-        $query->when(request()->filled('material'), function ($q) {
-            return $q->where('material', request('material'));
-        });
 
         $query->when(request()->filled('brand'), function ($q) {
             return $q->where('brand', request('brand'));
@@ -54,7 +51,6 @@ class CommodityController extends Controller
         $commodities = $query->latest()->get();
         $year_of_purchases = Commodity::pluck('year_of_purchase')->unique()->sort();
         $commodity_brands = Commodity::pluck('brand')->unique()->sort();
-        $commodity_materials = Commodity::pluck('material')->unique()->sort();
         $school_operational_assistances = SchoolOperationalAssistance::orderBy('name', 'ASC')->get();
         $commodity_locations = CommodityLocation::orderBy('name', 'ASC')->get();
 
@@ -66,7 +62,7 @@ class CommodityController extends Controller
                 'commodity_locations',
                 'year_of_purchases',
                 'commodity_brands',
-                'commodity_materials'
+
             )
         );
     }
@@ -106,7 +102,7 @@ class CommodityController extends Controller
      */
     public function generatePDF() {
         $commodities = Commodity::all();
-        $sekolah = 'Nama Sekolah'; // Pastikan variabel $sekolah didefinisikan
+        $sekolah = env('NAMA_SEKOLAH', 'Barang Milik Sekolah');
     
         $pdf = Pdf::loadView('commodities.pdf', compact('commodities', 'sekolah'))->setPaper('a4');
         return $pdf->download('commodities.pdf');

@@ -48,12 +48,7 @@ class HomeController extends Controller
         $commodity_each_location_count = CommodityLocation::has('commodities')->withCount('commodities')->get();
         $commodity_by_school_operational_assistance_count = $this->schoolOperationalAssistanceRepository
             ->countCommodityBySchoolOperationalAssistance();
-        $commodity_by_material_count = $this->commodityRepository->countCommodityByMaterial()->map(function ($commodity) {
-            return collect([
-                'name' => $commodity->material,
-                'material_count' => $commodity->count
-            ]);
-        });
+        
         $commodity_by_brand_count = $this->commodityRepository->countCommodityByBrand()->map(function ($commodity) {
             return collect([
                 'name' => $commodity->brand,
@@ -78,10 +73,7 @@ class HomeController extends Controller
                 'categories' => $commodity_by_school_operational_assistance_count->pluck('name'),
                 'series' => $commodity_by_school_operational_assistance_count->pluck('commodities_count')
             ],
-            'commodity_by_material_count' => [
-                'categories' => $commodity_by_material_count->pluck('name'),
-                'series' => $commodity_by_material_count->pluck('material_count')
-            ],
+            
             'commodity_by_brand_count' => [
                 'categories' => $commodity_by_brand_count->pluck('name'),
                 'series' => $commodity_by_brand_count->pluck('brand_count')

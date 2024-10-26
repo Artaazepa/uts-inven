@@ -100,6 +100,15 @@
    					 		</a>
 						</li>
 						@endcan
+						<!-- New Sidebar Link for "Data Item Baru" -->
+						@can('lihat item')
+						<li class="nav-item {{ request()->routeIs('item.index') ? 'active' : '' }}">
+							<a href="{{ route('item.index') }}" class="nav-link">
+								<i class="fas fa-clipboard-list"></i> <span>Data Item Baru</span>
+							</a>
+						</li>
+						@endcan
+
 						@can('lihat jadwal')
 						<li class="nav-item {{ request()->routeIs('jadwal.index') ? 'active' : '' }}">
     						<a href="{{ route('maintenance-schedule.index') }}" class="nav-link">

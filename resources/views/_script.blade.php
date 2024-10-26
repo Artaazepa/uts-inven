@@ -18,7 +18,7 @@
 					$("#show_commodity #commodity_location_id").val(
 						res.data.commodity_location.name
 					);
-					$("#show_commodity #material").val(res.data.material);
+			
 					$("#show_commodity #brand").val(res.data.brand);
 					$("#show_commodity #year_of_purchase").val(res.data.year_of_purchase);
 					$("#show_commodity #condition").val(res.data.condition_name);

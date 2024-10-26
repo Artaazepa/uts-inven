@@ -61,18 +61,7 @@
 					<hr>
 
 					<div class="row">
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label for="material">Bahan</label>
-								<input type="text" class="form-control @error('material', 'store') is-invalid @enderror" name="material"
-									id="material" value="{{ old('material') }}" placeholder="Masukan bahan barang..">
-								@error('material', 'store')
-								<div class="d-block invalid-feedback">
-									{{ $message }}
-								</div>
-								@enderror
-							</div>
-						</div>
+						
 						<div class="col-lg-6">
 							<div class="form-group">
 								<label for="brand">Merek</label>

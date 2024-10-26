@@ -41,10 +41,7 @@ class CommoditySeeder extends Seeder
             'Olympic', 'Informa', "Dove's", 'Funika', 'Atria', 'Vivere', 'Samsung'
         ];
 
-        $materials = [
-            'Kayu Solid', 'Kayu Lapis (Plywood/Multipleks)', 'Blockboard',
-            'MDF (Medium Density Fibreboard)', 'Melaminto', 'Partikel', 'Rotan', 'Filamen'
-        ];
+        
 
         foreach ($commodities as $commodity) {
             DB::table('commodities')->insert([
@@ -54,7 +51,7 @@ class CommoditySeeder extends Seeder
                 'item_code' => 'BRG-' . mt_rand(1000, 9000) . mt_rand(100, 900),
                 'name' => $commodity,
                 'brand' => $brands[array_rand($brands)],
-                'material' => $materials[array_rand($materials)],
+                
                 'year_of_purchase' => mt_rand(2010, date('Y')),
                 'condition' => mt_rand(1, 3),
                 'quantity' => mt_rand(50, 200),

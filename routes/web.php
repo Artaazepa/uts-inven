@@ -62,3 +62,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('peran-dan-hak-akses', RoleController::class)->parameter('peran-dan-hak-akses', 'role');
 });
+// Fallback route untuk menangani 404
+Route::fallback(function () {
+    return response()->view('errors.404', [], 404);
+});

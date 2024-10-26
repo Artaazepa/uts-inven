@@ -124,11 +124,7 @@
 	</div>
 
 	<div class="row">
-		<div class="col-lg-6">
-			<x-pie-chart chartTitle="Grafik Jumlah Barang Berdasarkan Material" chartID="chartCommodityByMaterial"
-				:series="$charts['commodity_by_material_count']['series']"
-				:categories="$charts['commodity_by_material_count']['categories']"></x-pie-chart>
-		</div>
+		
 		<div class="col-lg-6">
 			<x-pie-chart chartTitle="Grafik Jumlah Barang Berdasarkan Merk" chartID="chartCommodityByBrand"
 				:series="$charts['commodity_by_brand_count']['series']"

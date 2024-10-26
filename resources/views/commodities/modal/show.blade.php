@@ -34,12 +34,7 @@
 				<hr>
 
 				<div class="row">
-					<div class="col-lg-6">
-						<div class="form-group">
-							<label for="material">Bahan</label>
-							<input type="text" class="form-control" id="material" disabled>
-						</div>
-					</div>
+					
 					<div class="col-lg-6">
 						<div class="form-group">
 							<label for="brand">Merk</label>

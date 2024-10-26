@@ -17,7 +17,6 @@
 					@can('export barang')
 					<form action="{{ route('barang.export') }}" method="POST">
 						@csrf
-
 						<button type="submit" class="btn btn-success mr-2">
 							<i class="fas fa-fw fa-download"></i>
 							Export Excel
@@ -53,9 +52,9 @@
 								<option value="">Pilih lokasi barang..</option>
 								@foreach ($commodity_locations as $commodity_location)
 								<option value="{{ $commodity_location->id }}"
-									@selected(request('commodity_location_id')==$commodity_location->id)>{{
-									$commodity_location->name
-									}}</option>
+									@selected(request('commodity_location_id')==$commodity_location->id)>
+									{{ $commodity_location->name }}
+								</option>
 								@endforeach
 							</select>
 						</div>
@@ -63,13 +62,12 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="school_operational_assistance_id">Asal Perolehan:</label>
-							<select name="school_operational_assistance_id" id="school_operational_assistance_id"
-								class="form-control">
+							<select name="school_operational_assistance_id" id="school_operational_assistance_id" class="form-control">
 								<option value="">Pilih asal perolehan..</option>
 								@foreach ($school_operational_assistances as $school_operational_assistance)
 								<option value="{{ $school_operational_assistance->id }}"
-									@selected(request('school_operational_assistance_id')==$school_operational_assistance->id)>{{
-									$school_operational_assistance->name }}
+									@selected(request('school_operational_assistance_id')==$school_operational_assistance->id)>
+									{{ $school_operational_assistance->name }}
 								</option>
 								@endforeach
 							</select>
@@ -95,8 +93,9 @@
 							<select name="year_of_purchase" id="year_of_purchase" class="form-control">
 								<option value="">Pilih tahun pembelian..</option>
 								@foreach ($year_of_purchases as $year_of_purchase)
-								<option value="{{ $year_of_purchase }}" @selected(request('year_of_purchase')==$year_of_purchase)>{{
-									$year_of_purchase }}</option>
+								<option value="{{ $year_of_purchase }}" @selected(request('year_of_purchase')==$year_of_purchase)>
+									{{ $year_of_purchase }}
+								</option>
 								@endforeach
 							</select>
 						</div>
@@ -106,24 +105,13 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label for="material">Bahan:</label>
-							<select name="material" id="material" class="form-control">
-								<option value="">Pilih bahan..</option>
-								@foreach ($commodity_materials as $material)
-								<option value="{{ $material }}" @selected(request('material')==$material)>{{
-									$material }}</option>
-								@endforeach
-							</select>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="form-group">
 							<label for="brand">Merk:</label>
 							<select name="brand" id="brand" class="form-control">
 								<option value="">Pilih merk..</option>
 								@foreach ($commodity_brands as $brand)
-								<option value="{{ $brand }}" @selected(request('brand')==$brand)>{{
-									$brand }}</option>
+								<option value="{{ $brand }}" @selected(request('brand')==$brand)>
+									{{ $brand }}
+								</option>
 								@endforeach
 							</select>
 						</div>
@@ -141,7 +129,6 @@
 								<th scope="col">#</th>
 								<th scope="col">Kode Barang</th>
 								<th scope="col">Nama Barang</th>
-								<th scope="col">Bahan</th>
 								<th scope="col">Merk</th>
 								<th scope="col">Tahun Pembelian</th>
 								<th scope="col">Kondisi</th>
@@ -154,7 +141,6 @@
 								<th scope="row">{{ $loop->iteration }}</th>
 								<td>{{ $commodity->item_code }}</td>
 								<td>{{ Str::limit($commodity->name, 55, '...') }}</td>
-								<td>{{ $commodity->material }}</td>
 								<td>{{ $commodity->brand }}</td>
 								<td>{{ $commodity->year_of_purchase }}</td>
 								@if($commodity->condition === 1)
