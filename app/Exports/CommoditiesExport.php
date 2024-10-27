@@ -28,7 +28,6 @@ class CommoditiesExport implements FromCollection, WithHeadings, WithMapping, Sh
             'Kode Barang',
             'Nama Barang',
             'Merek',
-            'Bahan',
             'Asal Perolehan',
             'Lokasi Barang',
             'Tahun Pembelian',

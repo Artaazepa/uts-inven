@@ -25,7 +25,6 @@ class CommoditiesImport implements ToModel, WithHeadingRow, WithUpserts
             'item_code' => $row['kode_barang'],
             'name' => $row['nama_barang'],
             'brand' => $row['merek'],
-            'material' => $row['bahan'],
             'school_operational_assistance_id' => $school_operational->id,
             'commodity_location_id' => $commodity_location->id,
             'year_of_purchase' => $row['tahun_pembelian'],
