@@ -24,7 +24,11 @@ class MaintenanceScheduleController extends Controller
      */
     public function index()
     {
-        $maintenance_schedules = MaintenanceSchedule::orderBy('id', 'ASC')->get();
+        $maintenance_schedules = MaintenanceSchedule::orderBy('id', 'ASC')->get()->map(function ($schedule) {
+            $schedule->formatted_date = date('d-m-Y', strtotime($schedule->scheduled_date));
+            return $schedule;
+        });
+
         return view('maintenance-schedule.index', compact('maintenance_schedules'));
     }
 

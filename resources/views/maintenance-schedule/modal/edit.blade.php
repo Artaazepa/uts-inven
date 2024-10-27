@@ -31,10 +31,10 @@
 						<div class="col-lg-12">
 							<div class="form-group">
 								<label for="scheduled_date">Tanggal Pemeliharaan</label>
-								<input type="date" class="form-control" name="scheduled_date" id="scheduled_date"
-									value="{{ old('scheduled_date', \Carbon\Carbon::parse($schedule->scheduled_date)->format('Y-m-d')) }}">
+								<input type="date" class="form-control @error('scheduled_date') is-invalid @enderror" name="scheduled_date" id="scheduled_date"
+									value="{{ old('scheduled_date', $schedule->scheduled_date ? date('Y-m-d', strtotime($schedule->scheduled_date)) : '') }}">
 								@error('scheduled_date')
-								<div class="d-block invalid-feedback">{{ $message }}</div>
+								<div class="invalid-feedback">{{ $message }}</div>
 								@enderror
 							</div>
 						</div>

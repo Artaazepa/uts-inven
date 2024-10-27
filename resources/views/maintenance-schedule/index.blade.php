@@ -59,7 +59,7 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $schedule->item_name }}</td>
-                                <td>{{ \Carbon\Carbon::parse($schedule->scheduled_date)->format('d/m/Y') }}</td>
+                                <td>{{ date('d-m-Y', strtotime($schedule->scheduled_date)) }}</td>
                                 <td>
                                     @if($schedule->status == 'completed')
                                     <span class="badge badge-success">Completed</span>

@@ -53,8 +53,12 @@
                 },
                 success: (res) => {
                     if (res.data) {
+                        // Convert the date to yyyy-MM-dd format
                         const scheduledDate = new Date(res.data.scheduled_date);
-                        const formattedDate = scheduledDate.toISOString().split('T')[0]; // Format to yyyy-MM-dd
+                        const year = scheduledDate.getFullYear();
+                        const month = String(scheduledDate.getMonth() + 1).padStart(2, '0'); // Menambahkan 1 karena bulan dimulai dari 0
+                        const day = String(scheduledDate.getDate()).padStart(2, '0');
+                        const formattedDate = `${year}-${month}-${day}`;
 
                         $("#maintenance_schedule_edit_modal #item_name").val(res.data.item_name);
                         $("#maintenance_schedule_edit_modal #description").val(res.data.description);
