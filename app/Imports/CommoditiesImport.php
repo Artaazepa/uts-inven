@@ -41,10 +41,12 @@ class CommoditiesImport implements ToModel, WithHeadingRow, WithUpserts
      */
     public function translateConditionNameToNumber($conditionName)
     {
+        $conditionName = strtolower($conditionName); // Ubah ke huruf kecil
         return match ($conditionName) {
-            'Baik' => 1,
-            'Kurang Baik' => 2,
-            'Rusak Berat' => 3,
+            'baik' => 1,
+            'kurang baik' => 2,
+            'rusak berat' => 3,
+            default => null, // Tambahkan default untuk menangani kasus yang tidak terduga
         };
     }
 
