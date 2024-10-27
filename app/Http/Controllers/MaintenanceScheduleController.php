@@ -10,6 +10,7 @@ use App\Http\Requests\MaintenanceScheduleImportRequest;
 use App\Imports\MaintenanceSchedulesImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Request;
 
 class MaintenanceScheduleController extends Controller
 {
@@ -23,9 +24,7 @@ class MaintenanceScheduleController extends Controller
      */
     public function index()
     {
-        // Mengambil data Maintenance Schedule dan diurutkan berdasarkan 'title'
-        $maintenance_schedules = MaintenanceSchedule::all();
-
+        $maintenance_schedules = MaintenanceSchedule::orderBy('id', 'ASC')->get();
         return view('maintenance-schedule.index', compact('maintenance_schedules'));
     }
 
@@ -34,9 +33,7 @@ class MaintenanceScheduleController extends Controller
      */
     public function store(StoreMaintenanceScheduleRequest $request)
     {
-        // Membuat Maintenance Schedule baru
         MaintenanceSchedule::create($request->validated());
-
         return to_route('maintenance-schedule.index')->with('success', 'Jadwal berhasil ditambahkan!');
     }
 
@@ -45,9 +42,8 @@ class MaintenanceScheduleController extends Controller
      */
     public function update(UpdateMaintenanceScheduleRequest $request, MaintenanceSchedule $maintenanceSchedule)
     {
-        // Mengupdate Maintenance Schedule yang sudah ada
+        
         $maintenanceSchedule->update($request->validated());
-
         return to_route('maintenance-schedule.index')->with('success', 'Jadwal berhasil diubah!');
     }
 
@@ -56,51 +52,51 @@ class MaintenanceScheduleController extends Controller
      */
     public function destroy(MaintenanceSchedule $maintenanceSchedule)
     {
-        // Menghapus Maintenance Schedule
         $maintenanceSchedule->delete();
-
         return to_route('maintenance-schedule.index')->with('success', 'Jadwal berhasil dihapus!');
     }
 
     /**
      * Export Maintenance Schedule data to Excel.
      */
-   
+    // public function export()
+    // {
+    //     return Excel::download(new MaintenanceSchedulesExport, 'maintenance-schedules-' . date('d-m-Y') . '.xlsx');
+    // }
+
+    /**
+     * Import Maintenance Schedule data from Excel.
+     */
+    // public function import(MaintenanceScheduleImportRequest $request)
+    // {
+    //     Excel::import(new MaintenanceSchedulesImport, $request->file('file'));
+    //     return to_route('maintenance-schedule.index')->with('success', 'Data jadwal berhasil diimpor!');
+    // }
+
     /**
      * Generate PDF for all Maintenance Schedules.
      */
-    public function generatePDF()
-    {
-        // Otorisasi untuk mencetak semua jadwal pemeliharaan
-        $this->authorize('print jadwal');
+    // public function generatePDF()
+    // {
+    //     $this->authorize('print jadwal');
+    //     $schedules = MaintenanceSchedule::all();
+    //     $institution = env('NAMA_INSTANSI', 'Instansi');
 
-        // Mengambil semua jadwal pemeliharaan
-        $schedules = MaintenanceSchedule::all();
-        $institution = env('NAMA_INSTANSI', 'Instansi');
+    //     $pdf = Pdf::loadView('maintenance-schedule.pdf', compact('schedules', 'institution'))->setPaper('a4');
+    //     return $pdf->download('jadwal-maintenance.pdf');
+    // }
 
-        // Generate PDF dengan semua jadwal
-        $pdf = Pdf::loadView('maintenance-schedule.pdf', compact('schedules', 'institution'))->setPaper('a4');
+    // /**
+    //  * Generate PDF for a specific Maintenance Schedule.
+    //  */
+    // public function generatePDFIndividually($id)
+    // {
+    //     $this->authorize('print individual jadwal');
+    //     $schedule = MaintenanceSchedule::findOrFail($id);
+    //     $institution = env('NAMA_INSTANSI', 'Instansi');
 
-        // Download PDF
-        return $pdf->download('jadwal-maintenance.pdf');
-    }
-
-    /**
-     * Generate PDF for a specific Maintenance Schedule.
-     */
-    public function generatePDFIndividually($id)
-    {
-        // Otorisasi untuk mencetak jadwal individu
-        $this->authorize('print individual jadwal');
-
-        // Mengambil jadwal pemeliharaan berdasarkan ID
-        $schedule = MaintenanceSchedule::findOrFail($id);
-        $institution = env('NAMA_INSTANSI', 'Instansi');
-
-        // Generate PDF untuk jadwal individu
-        $pdf = Pdf::loadView('maintenance-schedule.pdfone', compact('schedule', 'institution'))->setPaper('a4');
-
-        // Download PDF
-        return $pdf->download('jadwal-maintenance-individual.pdf');
-    }
+    //     $pdf = Pdf::loadView('maintenance-schedule.pdfone', compact('schedule', 'institution'))->setPaper('a4');
+    //     return $pdf->download('jadwal-maintenance-individual.pdf');
+    // }
 }
+?>

@@ -14,13 +14,11 @@ return new class extends Migration
         Schema::create('maintenance_schedules', function (Blueprint $table) {
             $table->id();
             $table->string('item_name');
-            $table->date('scheduled_date');
             $table->text('description')->nullable();
-            $table->enum('status', ['planned', 'ongoing', 'completed', 'canceled']); // Menambahkan kolom status
+            $table->date('scheduled_date');
+            $table->enum('status', ['planned', 'ongoing', 'completed', 'canceled']);
             $table->timestamps();
         });
-        
-        
     }
 
     /**

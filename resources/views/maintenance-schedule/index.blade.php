@@ -11,6 +11,25 @@
             <!-- Action Buttons -->
             <div class="d-flex justify-content-end mb-3">
                 <div class="btn-group">
+                    <!-- Import Excel Button -->
+                    @can('import jadwal')
+                    <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#excel_menu">
+                        <i class="fas fa-fw fa-upload"></i>
+                        Import Excel
+                    </button>
+                    @endcan
+
+                    <!-- Export Excel Button -->
+                    @can('export jadwal')
+                    <form action="{{ route('maintenance-schedule.export') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-success mr-2">
+                            <i class="fas fa-fw fa-download"></i>
+                            Export Excel
+                        </button>
+                    </form>
+                    @endcan
+
                     <!-- Add Schedule Button -->
                     @can('tambah jadwal')
                     <button type="button" class="btn btn-primary" data-toggle="modal"
@@ -41,8 +60,6 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $schedule->item_name }}</td>
                                 <td>{{ \Carbon\Carbon::parse($schedule->scheduled_date)->format('d/m/Y') }}</td>
-                                
-                                <!-- Tampilkan status dengan warna -->
                                 <td>
                                     @if($schedule->status == 'completed')
                                     <span class="badge badge-success">Completed</span>
@@ -54,20 +71,21 @@
                                     <span class="badge badge-warning">Planned</span>
                                     @endif
                                 </td>
-
                                 <td>{{ Str::limit($schedule->description, 55, '...') }}</td>
-                                
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <!-- Edit Schedule Button -->
+                                        
+
+                                        <!-- Edit Jadwal Button -->
                                         @can('ubah jadwal')
-                                        <a data-id="{{ $schedule->id }}" class="btn btn-sm btn-success text-white edit-modal mr-2"
-											data-toggle="modal" data-target="#maintenance_schedule_edit_modal" data-placement="top"
-											title="Ubah data">
-											<i class="fas fa-fw fa-edit"></i>
-										</a>
+                                        <a data-id="{{ $schedule->id }}" class="btn btn-sm btn-success text-white update-maintenance mr-2"
+                                            data-toggle="modal" data-target="#maintenance_schedule_edit_modal" data-placement="top"
+                                            title="Ubah data">
+                                            <i class="fas fa-fw fa-edit"></i>
+                                        </a>
                                         @endcan
-                                        <!-- Delete Schedule Button -->
+
+                                        <!-- Delete Jadwal Button -->
                                         @can('hapus jadwal')
                                         <form action="{{ route('maintenance-schedule.destroy', $schedule->id) }}" method="POST">
                                             @csrf
@@ -92,7 +110,9 @@
     <!-- Modals -->
     @push('modal')
     @include('maintenance-schedule.modal.create') <!-- Modal Tambah Jadwal -->
+    @include('maintenance-schedule.modal.show')   <!-- Modal Detail Jadwal -->
     @include('maintenance-schedule.modal.edit')   <!-- Modal Edit Jadwal -->
+    {{-- @include('maintenance-schedule.modal.import') <!-- Modal Import Jadwal --> --}}
     @endpush
 
     <!-- Custom Scripts -->

@@ -54,15 +54,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/ruangan/export', [CommodityLocationController::class, 'export'])->name('ruangan.export');
 
     Route::resource('maintenance-schedule', MaintenanceScheduleController::class)
-    ->except('create', 'edit', 'show')
-    ->parameter('maintenance-schedule', 'maintenance_schedule');
-
+    ->except('create','edit', 'show')
+    ->parameter('jadwal-pemeliharaan', 'maintenance_schedule');
+   
     Route::resource('pengguna', UserController::class)->except('create', 'edit', 'show')
         ->parameter('pengguna', 'user');
 
     Route::resource('peran-dan-hak-akses', RoleController::class)->parameter('peran-dan-hak-akses', 'role');
 });
-// Fallback route untuk menangani 404
-Route::fallback(function () {
-    return response()->view('errors.404', [], 404);
-});
+

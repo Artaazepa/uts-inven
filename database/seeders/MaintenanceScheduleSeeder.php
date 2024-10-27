@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\MaintenanceSchedule; // Sesuaikan dengan lokasi model Anda
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 class MaintenanceScheduleSeeder extends Seeder
@@ -13,31 +13,39 @@ class MaintenanceScheduleSeeder extends Seeder
      */
     public function run(): void
     {
-        // Data contoh jadwal pemeliharaan dengan status
-        $maintenanceSchedules = [
+        // Hapus semua data dari tabel maintenance_schedules
+        DB::table('maintenance_schedules')->delete();
+
+        $schedules = [
             [
-                'item_name' => 'Meja Guru', 
+                'item_name' => 'Meja Guru',
                 'description' => 'Pengecekan kondisi meja, pengencangan sekrup, dan pembersihan.',
                 'scheduled_date' => Carbon::createFromFormat('Y-m-d', '2024-12-15'),
-                'status' => 'planned', // Menggunakan status yang sesuai
+                'status' => 'planned',
             ],
             [
-                'item_name' => 'Kursi Roda Dua', 
+                'item_name' => 'Kursi Roda Dua',
                 'description' => 'Pemeriksaan kondisi kursi roda dua, pelumasan roda, dan pengecekan keseimbangan.',
                 'scheduled_date' => Carbon::createFromFormat('Y-m-d', '2024-10-25'),
-                'status' => 'planned', // Menggunakan status yang sesuai
+                'status' => 'planned',
             ],
             [
-                'item_name' => 'Lemari Buku', 
+                'item_name' => 'Lemari Buku',
                 'description' => 'Pengecekan kelayakan struktur lemari buku dan pembersihan debu.',
                 'scheduled_date' => Carbon::createFromFormat('Y-m-d', '2024-11-05'),
-                'status' => 'completed', // Menggunakan status yang sesuai
+                'status' => 'completed',
             ],
         ];
 
-        // Insert data ke dalam tabel maintenance_schedules
-        foreach ($maintenanceSchedules as $schedule) {
-            MaintenanceSchedule::create($schedule);
+        foreach ($schedules as $schedule) {
+            DB::table('maintenance_schedules')->insert([
+                'item_name' => $schedule['item_name'],
+                'description' => $schedule['description'],
+                'scheduled_date' => $schedule['scheduled_date'],
+                'status' => $schedule['status'],
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
         }
     }
 }

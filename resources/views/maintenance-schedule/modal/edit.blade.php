@@ -1,4 +1,4 @@
-<!-- Modal Edit Maintenance Schedule -->
+<!-- Modal Edit Jadwal Pemeliharaan -->
 <div class="modal fade" id="maintenance_schedule_edit_modal" data-backdrop="static" data-keyboard="false" tabindex="-1"
 	role="dialog" aria-labelledby="editMaintenanceScheduleLabel" aria-hidden="true">
 	<div class="modal-dialog">

@@ -101,13 +101,13 @@
 						</li>
 						@endcan
 						<!-- New Sidebar Link for "Data Item Baru" -->
-						@can('lihat item')
-						<li class="nav-item {{ request()->routeIs('item.index') ? 'active' : '' }}">
+						
+						{{-- <li class="nav-item {{ request()->routeIs('location-item.index') ? 'active' : '' }}">
 							<a href="{{ route('item.index') }}" class="nav-link">
-								<i class="fas fa-clipboard-list"></i> <span>Data Item Baru</span>
+								<i class="fas fa-clipboard-list"></i> <span>Item/Ruangan</span>
 							</a>
-						</li>
-						@endcan
+						</li> --}}
+						
 
 						@can('lihat jadwal')
 						<li class="nav-item {{ request()->routeIs('jadwal.index') ? 'active' : '' }}">

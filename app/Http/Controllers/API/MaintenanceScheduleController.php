@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\API;
 
-use App\MaintenanceSchedule;
+use App\Maintenance;
 use App\Http\Controllers\Controller;
+use App\MaintenanceSchedule;
 use Illuminate\Http\Response;
 
 class MaintenanceScheduleController extends Controller

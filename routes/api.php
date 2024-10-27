@@ -33,5 +33,10 @@ Route::name('api.')->group(function () {
     )->name('bantuan-dana-operasional.show');
     Route::get('/pengguna/{user}', [UserController::class, 'show'])->name('pengguna.show');
     Route::get('/peran-dan-hak-akses/{role}', [RoleController::class, 'show'])->name('peran-dan-hak-akses.show');
-    Route::get('maintenance_schedule/{id}', [MaintenanceScheduleController::class, 'show'])->name('maintenance_schedule.show');
+    // Rute untuk menampilkan jadwal pemeliharaan
+    Route::get('/maintenance_schedule/{maintenance_schedule}', [MaintenanceScheduleController::class, 'show'])->name('maintenance_schedule.show');
+
+   
 });
+
+    
