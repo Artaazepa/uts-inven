@@ -22,5 +22,6 @@ Jika Anda menggunakan XAMPP, untuk PHP dan MySQL sudah menjadi 1 (bundle) di dal
 -   Print barang (seluruh/individual)
 -   CRUD Data BOS (Bantuan Operasional Sekolah)
 -   CRUD Data Ruangan
+-   CRUD Jadwal Pemeliharaan
 -   CRUD Data Pengguna
 -   Pengaturan Profil
